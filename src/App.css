@@ -1,0 +1,15 @@
+.d-inline-block {
+  display: inline-block;
+}
+
+.profile-avatar-area {
+  background: #467fcf;
+  border-radius: 2px;
+  padding: 10px;
+  margin-bottom: 40px;
+}
+
+.profile-avatar {
+  border: 1px solid #467fcf;
+  margin-bottom: -40px;
+}

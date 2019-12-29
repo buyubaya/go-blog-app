@@ -4,6 +4,7 @@ import {
   Page,
   Grid,
   StatsCard,
+  Card,
 } from "tabler-react";
 
 import SiteWrapper from "@/containers/SiteWrapper";
@@ -14,46 +15,51 @@ function HomePage() {
   return (
     <SiteWrapper>
       <Page.Content title="Dashboard">
+
         <Grid.Row cards={true}>
           <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard layout={1} movement={6} total="43" label="New Tickets" />
+            <Card>
+              <Card.Status color="blue" />
+              <Card.Body>
+                <Card.Title>
+                  <h3 style={{ textAlign: "center" }}>20</h3>
+                  <h4 style={{ textAlign: "center" }}>Blogs</h4>
+                </Card.Title>
+              </Card.Body>
+            </Card>
           </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard
-              layout={1}
-              movement={-3}
-              total="17"
-              label="Closed Today"
-            />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard layout={1} movement={9} total="7" label="New Replies" />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard
-              layout={1}
-              movement={3}
-              total="27.3k"
-              label="Followers"
-            />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard
-              layout={1}
-              movement={-2}
-              total="$95"
-              label="Daily earnings"
-            />
-          </Grid.Col>
-          <Grid.Col width={6} sm={4} lg={2}>
-            <StatsCard layout={1} movement={-1} total="621" label="Products" />
-          </Grid.Col>
-          <Grid.Col>
 
-            <ActivitiesTable />
+          <Grid.Col width={6} sm={4} lg={2}>
+            <Card>
+              <Card.Status color="azure" />
+              <Card.Body>
+                <Card.Title>
+                  <h3 style={{ textAlign: "center" }}>20</h3>
+                  <h4 style={{ textAlign: "center" }}>Users</h4>
+                </Card.Title>
+              </Card.Body>
+            </Card>
+          </Grid.Col>
 
+          <Grid.Col width={6} sm={4} lg={2}>
+            <Card>
+              <Card.Status color="purple" />
+              <Card.Body>
+                <Card.Title>
+                  <h3 style={{ textAlign: "center" }}>20</h3>
+                  <h4 style={{ textAlign: "center" }}>Activities</h4>
+                </Card.Title>
+              </Card.Body>
+            </Card>
           </Grid.Col>
         </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Col>
+            <ActivitiesTable />
+          </Grid.Col>
+        </Grid.Row>
+
       </Page.Content>
     </SiteWrapper>
   );

@@ -32,7 +32,7 @@ const MainLayout = ({
 
   return (
     <AppContext.Provider value={appContext}>
-      <AppRouter />
+      <AppRouter user={user} />
     </AppContext.Provider>
   );
 };

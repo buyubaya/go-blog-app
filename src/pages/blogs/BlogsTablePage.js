@@ -1,4 +1,6 @@
-import * as React from "react";
+import React, {
+  useState,
+} from "react";
 
 import {
   Page,
@@ -6,6 +8,7 @@ import {
 import SiteWrapper from "@/containers/SiteWrapper";
 import Loading from "@/components/common/Loading";
 import BlogsTable from "@/components/blogs/BlogsTable";
+import Pagination from "@/components/common/Pagination";
 
 import {
   usePosts,
@@ -14,18 +17,40 @@ import {
 
 function BlogsTablePage() {
 
+  const [queryParams, setQuerParams] = useState({
+    page: 1,
+    pageSize: 10,
+  });
+
+
   const {
     data,
     loading,
     // error,
     reload,
-  } = usePosts();
+  } = usePosts({
+    query: queryParams,
+    deps: [queryParams],
+  });
+
+  const posts = data && data.posts;
+  const count = data && data.count;
+  const currentPage = queryParams && queryParams.page;
+  const currentPageSize = queryParams && queryParams.pageSize;
 
 
   const _handleUpdateBlogSuccess = () => {
     if (reload) {
       reload();
     }
+  };
+
+
+  const _handlePageChange = (page) => {
+    setQuerParams(state => ({
+      ...state,
+      page: page,
+    }));
   };
 
 
@@ -41,11 +66,19 @@ function BlogsTablePage() {
         {
           !loading && (
             <BlogsTable
-              posts={(data && data.posts)}
+              posts={posts}
               onUpdate={_handleUpdateBlogSuccess}
             />
           )
         }
+
+         <Pagination
+          page={currentPage}
+          pageSize={currentPageSize}
+          count={count}
+          onPageChange={_handlePageChange}
+        />
+
       </Page.Content>
     </SiteWrapper>
   );

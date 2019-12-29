@@ -38,7 +38,7 @@ const ActivitiesTable = () => {
     deps: [queryParams],
   });
 
-  const activities = (data && data.activities) || [];
+  const activities = data && data.activities;
   const count = data && data.count;
   const currentPage = (queryParams && queryParams.page) || 1;
   const currentPageSize = (queryParams && queryParams.pageSize) || 1;
@@ -47,10 +47,12 @@ const ActivitiesTable = () => {
 
 
   useEffect(() => {
-    setCurrentList(state => [
-      ...state,
-      ...activities,
-    ]);
+    if (activities) {
+      setCurrentList(state => [
+        ...state,
+        ...activities,
+      ]);
+    }
   }, [activities]);
 
 

@@ -4,14 +4,19 @@ import {
 } from "formik";
 import {
   LoginPage as TablerLoginPage,
+  Button,
 } from "tabler-react";
-
+import {
+  withRouter,
+} from "react-router-dom";
 // FIREBASE
 import * as firebase from "firebase/app";
 
 
 
-function LoginPage() {
+function LoginPage({
+  history,
+}) {
 
   const _handleSignIn = async (
     values,
@@ -32,6 +37,7 @@ function LoginPage() {
 
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
+      history.push("/");
     } catch (error) {
       console.error("Sign in failed", error);
       if (error.message.includes("email")) {
@@ -44,6 +50,11 @@ function LoginPage() {
       setSubmitting(false);
     }
 
+  };
+
+
+  const _handleClickSignUp = () => {
+    history.push("/register");
   };
 
 
@@ -75,8 +86,23 @@ function LoginPage() {
         handleSubmit,
         isSubmitting,
       }) => {
+
         return (
           <>
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "40px 0 0",
+            }}>
+              <Button
+                onClick={_handleClickSignUp}
+                color="orange"
+                size="lg"
+              >
+                Sign up
+              </Button>
+            </div>
+
             <TablerLoginPage
               onSubmit={handleSubmit}
               onChange={handleChange}
@@ -95,4 +121,4 @@ function LoginPage() {
 }
 
 
-export default LoginPage;
+export default withRouter(LoginPage);

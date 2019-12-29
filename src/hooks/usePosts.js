@@ -6,7 +6,10 @@ import {
 const apiURL = process.env.REACT_APP_API_URL;
 
 
-export const usePosts = (params = {}) => {
+export const usePosts = ({
+  query = {},
+  deps = [],
+}) => {
 
   const {
     data,
@@ -17,9 +20,9 @@ export const usePosts = (params = {}) => {
     url: `${apiURL}/api/posts`,
     options: {
       method: "PUT",
-      body: JSON.stringify(params),
+      body: JSON.stringify(query),
     },
-    deps: [],
+    deps: deps,
   });
 
 

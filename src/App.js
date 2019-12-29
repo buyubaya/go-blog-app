@@ -4,9 +4,6 @@ import React, {
 } from "react";
 // COMPONENTs
 import MainLayout from "@/containers/MainLayout";
-import {
-  LoginPage,
-} from "@/pages";
 import Loading from "@/components/common/Loading";
 // STYLE
 import "./App.css";
@@ -33,15 +30,10 @@ function App() {
   }, []);
 
 
-  if (isLoading) {
+  if (isLoading || !user) {
     return (
       <Loading />
     );
-  }
-
-
-  if (!isLoading && !user) {
-    return <LoginPage />
   }
 
 
